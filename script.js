@@ -12,7 +12,7 @@ function game () {
   let tryingAmount = 10;
   return function repeat() {
     const randomNumber = createRandomNumber();
-    const userNumber = prompt('Угадай число от 1 до 10');
+    const userNumber = prompt('Угадай число от 1 до 100');
     tryingAmount--;
     if (tryingAmount > 0) {
       if (isNumber(userNumber)) {
