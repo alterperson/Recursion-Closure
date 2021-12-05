@@ -1,7 +1,7 @@
 'use strict';
 
 function createRandomNumber () {
-  return Math.floor(Math.random() * 10);
+  return Math.floor(Math.random() * 100);
 }
 
 const isNumber = function (num) {
@@ -12,7 +12,7 @@ function game () {
   let tryingAmount = 10;
   let userNumber;
   return function repeat() {
-    userNumber = prompt('Угадай число от 1 до 10');
+    userNumber = prompt('Угадай число от 1 до 100');
     tryingAmount--;
     const randomNumber = createRandomNumber();
     if (tryingAmount > 0) {
