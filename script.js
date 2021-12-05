@@ -1,7 +1,7 @@
 'use strict';
 
 function createRandomNumber () {
-  return Math.floor(Math.random() * 100);
+  return Math.floor(Math.random() * 10);
 }
 
 const isNumber = function (num) {
@@ -10,21 +10,21 @@ const isNumber = function (num) {
 
 function game () {
   let tryingAmount = 10;
+  let userNumber;
   return function repeat() {
-    const randomNumber = createRandomNumber();
-    const userNumber = prompt('Угадай число от 1 до 100');
+    userNumber = prompt('Угадай число от 1 до 10');
     tryingAmount--;
+    const randomNumber = createRandomNumber();
     if (tryingAmount > 0) {
       if (isNumber(userNumber)) {
         if (userNumber > randomNumber) {
-          console.log('Загаданное число меньше, осталось попыток', tryingAmount);
+          console.log('Загаданное число меньше, осталось попыток - ', tryingAmount);
           repeat();
         } else if (userNumber < randomNumber) {
-          console.log('Загаданное число больше, осталось попыток', tryingAmount);
+          console.log('Загаданное число больше, осталось попыток - ', tryingAmount);
           repeat();
-        } else if (userNumber == randomNumber ) {
-          console.log('Поздравляю, Вы угадали!!! Хотели бы сыграть еще?');
-          const newGame = confirm('Попытки закончились, хотите сыграть еще?');
+        } else if (+userNumber === randomNumber ) {
+          const newGame = confirm('Поздравляю, Вы угадали!!! Хотели бы сыграть еще?');
           if (newGame) {
             tryingAmount = 10;
             repeat();
