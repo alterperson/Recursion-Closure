@@ -9,9 +9,9 @@ const isNumber = function (num) {
 };
 
 function game () {
+  const userNumber = prompt('Угадай число от 1 до 100');
   return function repeat() {
     const randomNumber = createRandomNumber();
-    const userNumber = prompt('Угадай число от 1 до 100');
     if (isNumber(userNumber)) {
       if (userNumber > randomNumber) {
         console.log('Загаданное число меньше');
