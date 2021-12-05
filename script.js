@@ -9,22 +9,43 @@ const isNumber = function (num) {
 };
 
 function game () {
+  let tryingAmount = 10;
   return function repeat() {
     const randomNumber = createRandomNumber();
-    const userNumber = prompt('Угадай число от 1 до 100');
-    if (isNumber(userNumber)) {
-      if (userNumber > randomNumber) {
-        console.log('Загаданное число меньше');
-      } else if (userNumber < randomNumber) {
-        console.log('Загаданное число больше');
-      } else  if (userNumber == randomNumber ) {
-        console.log('Поздравляю, Вы угадали!!!');
-      }
-    } else if (userNumber === null) {
+    const userNumber = prompt('Угадай число от 1 до 10');
+    tryingAmount--;
+    if (tryingAmount > 0) {
+      if (isNumber(userNumber)) {
+        if (userNumber > randomNumber) {
+          console.log('Загаданное число меньше, осталось попыток', tryingAmount);
+          repeat();
+        } else if (userNumber < randomNumber) {
+          console.log('Загаданное число больше, осталось попыток', tryingAmount);
+          repeat();
+        } else if (userNumber == randomNumber ) {
+          console.log('Поздравляю, Вы угадали!!! Хотели бы сыграть еще?');
+          const newGame = confirm('Попытки закончились, хотите сыграть еще?');
+          if (newGame) {
+            tryingAmount = 10;
+            repeat();
+          } else {
+            console.log('Игра окончена');
+          }
+        }
+      } else if (userNumber === null) {
         console.log('Игра окончена');
+      } else {
+        console.log('Введи число!');
+        repeat();
+      }
     } else {
-      console.log('Введи число!');
-      repeat();
+      const newGame = confirm('Попытки закончились, хотите сыграть еще?');
+      if (newGame) {
+        tryingAmount = 10;
+        repeat();
+      } else {
+        console.log('Игра окончена');
+      }
     }
   }
 }
